@@ -1,4 +1,4 @@
-# FiveOrbs Wire
+# Duon Wire
 
 ***Wire*** provides an autowiring object creator that utilizes PHP's reflection
 capabilities to automatically resolve constructor arguments recursively. It
@@ -9,7 +9,7 @@ with a PSR-11 dependency injection container.
 ## Installation
 
 ```bash
-composer require fiveorbs/wire
+composer require duon/wire
 ```
 
 ## How to create objects

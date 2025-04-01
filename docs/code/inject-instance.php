@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Wire\Inject;
-use FiveOrbs\Wire\Type;
+use Duon\Wire\Inject;
+use Duon\Wire\Type;
 
 $inject = new Inject('value', Type::Literal, text: 'string', number: 13);
 

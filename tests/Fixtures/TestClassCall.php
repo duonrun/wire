@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests\Fixtures;
+namespace Duon\Wire\Tests\Fixtures;
 
-use FiveOrbs\Wire\Call;
-use FiveOrbs\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Call;
+use Duon\Wire\Tests\Fixtures\Container;
 
 #[Call('method1'), Call('method2', arg2: 'arg2', arg1: 'arg1')]
 class TestClassCall

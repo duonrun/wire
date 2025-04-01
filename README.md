@@ -1,11 +1,11 @@
-FiveOrbs Wire
+Duon Wire
 ==========
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/fiveorbs/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/fiveorbs/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Psalm level](https://shepherd.dev/github/fiveorbs/wire/level.svg?)](https://shepherd.dev/github/fiveorbs/wire)
-[![Psalm coverage](https://shepherd.dev/github/fiveorbs/wire/coverage.svg?)](https://shepherd.dev/github/fiveorbs/wire)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duoncode/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duoncode/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![Psalm level](https://shepherd.dev/github/duoncode/wire/level.svg?)](https://shepherd.dev/github/duoncode/wire)
+[![Psalm coverage](https://shepherd.dev/github/duoncode/wire/coverage.svg?)](https://shepherd.dev/github/duoncode/wire)
 
 
 > [!WARNING]  
@@ -27,18 +27,18 @@ various callable types—including functions, methods, closures, and class
 constructors. **Wire* seamlessly integrates with PSR-11 compliant dependency
 injection containers.
 
-Documentation can be found on the website: [fiveorbs.dev/wire](https://fiveorbs.dev/wire/)
+Documentation can be found on the website: [duon.sh/wire](https://duon.sh/wire/)
 
 Installation
 ------------
 
-    composer require fiveorbs/wire
+    composer require duon/wire
 
 Basic usage
 -----------
 
 ```php
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\Wire;
 
 class Value
 {
@@ -68,6 +68,6 @@ assert($model->value() === 'Autowired Value');
 License
 -------
 
-FiveOrbs Wire is released under the MIT [license](LICENSE.md).
+Duon Wire is released under the MIT [license](LICENSE.md).
 
 Copyright © 2023-2024 ebene fünf GmbH. All rights reserved.

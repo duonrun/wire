@@ -1,4 +1,4 @@
-site_name: FiveOrbs Wire
+site_name: Duon Wire
 copyright: © 2023-2024 ebene fünf GmbH
 nav:
   - Documentation:
@@ -12,8 +12,8 @@ nav:
     - changelog.md
     - license.md
 theme:
-  name: fiveorbs
-repo_url: https://github.com/fiveorbs/wire
+  name: duon
+repo_url: https://github.com/duon/wire
 extra:
   project: Wire
 plugins:

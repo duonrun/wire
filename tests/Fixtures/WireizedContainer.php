@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests\Fixtures;
+namespace Duon\Wire\Tests\Fixtures;
 
-use FiveOrbs\Wire\WireContainer;
+use Duon\Wire\WireContainer;
 
 class WireizedContainer extends Container implements WireContainer
 {

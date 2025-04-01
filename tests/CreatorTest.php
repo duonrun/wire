@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Inject;
-use FiveOrbs\Wire\Tests\Fixtures\TestClass;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassApp;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassConstructor;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassDefault;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassInjectCallback;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassMultiConstructor;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassObjectArgs;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassUsingNested;
-use FiveOrbs\Wire\Tests\Fixtures\TestInterface;
+use Duon\Wire\Creator;
+use Duon\Wire\Inject;
+use Duon\Wire\Tests\Fixtures\TestClass;
+use Duon\Wire\Tests\Fixtures\TestClassApp;
+use Duon\Wire\Tests\Fixtures\TestClassConstructor;
+use Duon\Wire\Tests\Fixtures\TestClassDefault;
+use Duon\Wire\Tests\Fixtures\TestClassInjectCallback;
+use Duon\Wire\Tests\Fixtures\TestClassMultiConstructor;
+use Duon\Wire\Tests\Fixtures\TestClassObjectArgs;
+use Duon\Wire\Tests\Fixtures\TestClassUsingNested;
+use Duon\Wire\Tests\Fixtures\TestInterface;
 
 final class CreatorTest extends TestCase
 {

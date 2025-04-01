@@ -2,14 +2,14 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Exception\WireException;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassDefault;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassIntersectionTypeConstructor;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassUnionTypeConstructor;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassUntypedConstructor;
+use Duon\Wire\Creator;
+use Duon\Wire\Exception\WireException;
+use Duon\Wire\Tests\Fixtures\TestClassDefault;
+use Duon\Wire\Tests\Fixtures\TestClassIntersectionTypeConstructor;
+use Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor;
+use Duon\Wire\Tests\Fixtures\TestClassUntypedConstructor;
 
 final class CreatorUnresolvableTest extends TestCase
 {

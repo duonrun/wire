@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests\Fixtures;
+namespace Duon\Wire\Tests\Fixtures;
 
-use FiveOrbs\Wire\Call;
-use FiveOrbs\Wire\Inject;
-use FiveOrbs\Wire\Type;
+use Duon\Wire\Call;
+use Duon\Wire\Inject;
+use Duon\Wire\Type;
 
 #[Call('callThis')]
 class TestClassInject

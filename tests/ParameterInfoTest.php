@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\ParameterInfo;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassApp;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassUnionTypeConstructor;
+use Duon\Wire\ParameterInfo;
+use Duon\Wire\Tests\Fixtures\TestClassApp;
+use Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor;
 use PHPUnit\Framework\Attributes\CoversClass;
 use ReflectionClass;
 use ReflectionFunction;
@@ -21,9 +21,9 @@ final class ParameterInfoTest extends TestCase
 		$param = $constructor->getParameters()[0];
 
 		$this->assertSame(
-			'FiveOrbs\Wire\Tests\Fixtures\TestClassUnionTypeConstructor::__construct(' .
-			'..., FiveOrbs\Wire\Tests\Fixtures\TestClassApp|' .
-			'FiveOrbs\Wire\Tests\Fixtures\TestClassRequest $param, ...)',
+			'Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor::__construct(' .
+			'..., Duon\Wire\Tests\Fixtures\TestClassApp|' .
+			'Duon\Wire\Tests\Fixtures\TestClassRequest $param, ...)',
 			ParameterInfo::info($param),
 		);
 	}
@@ -36,8 +36,8 @@ final class ParameterInfoTest extends TestCase
 		$param = $rfun->getParameters()[0];
 
 		$this->assertSame(
-			'FiveOrbs\Wire\Tests\ParameterInfoTest::FiveOrbs\Wire\Tests\{closure}' .
-			'(..., FiveOrbs\Wire\Tests\Fixtures\TestClassApp $app, ...)',
+			'Duon\Wire\Tests\ParameterInfoTest::Duon\Wire\Tests\{closure}' .
+			'(..., Duon\Wire\Tests\Fixtures\TestClassApp $app, ...)',
 			ParameterInfo::info($param),
 		);
 	}

@@ -2,11 +2,11 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Tests\Fixtures\Container;
-use FiveOrbs\Wire\Tests\Fixtures\WireizedContainer;
+use Duon\Wire\Creator;
+use Duon\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Tests\Fixtures\WireizedContainer;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
 class TestCase extends BaseTestCase

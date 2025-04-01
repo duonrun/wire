@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\CallableResolver;
-use FiveOrbs\Wire\ConstructorResolver;
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\CallableResolver;
+use Duon\Wire\ConstructorResolver;
+use Duon\Wire\Creator;
+use Duon\Wire\Wire;
 use Psr\Container\ContainerInterface as Container;
 
 final class WireTest extends TestCase

@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Exception;
+namespace Duon\Wire\Exception;
 
 use RuntimeException;
 

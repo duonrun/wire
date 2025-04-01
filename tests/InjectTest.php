@@ -2,19 +2,19 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\CallableResolver;
-use FiveOrbs\Wire\ConstructorResolver;
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Exception\WireException;
-use FiveOrbs\Wire\Inject;
-use FiveOrbs\Wire\Tests\Fixtures\Container;
-use FiveOrbs\Wire\Tests\Fixtures\TestClass;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassApp;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassInject;
-use FiveOrbs\Wire\Tests\TestCase;
-use FiveOrbs\Wire\Type;
+use Duon\Wire\CallableResolver;
+use Duon\Wire\ConstructorResolver;
+use Duon\Wire\Creator;
+use Duon\Wire\Exception\WireException;
+use Duon\Wire\Inject;
+use Duon\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Tests\Fixtures\TestClass;
+use Duon\Wire\Tests\Fixtures\TestClassApp;
+use Duon\Wire\Tests\Fixtures\TestClassInject;
+use Duon\Wire\Tests\TestCase;
+use Duon\Wire\Type;
 
 final class InjectTest extends TestCase
 {

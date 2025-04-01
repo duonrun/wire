@@ -2,10 +2,10 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire;
+namespace Duon\Wire;
 
 use Attribute;
-use FiveOrbs\Wire\Exception\WireException;
+use Duon\Wire\Exception\WireException;
 
 /** @psalm-api */
 #[Attribute(Attribute::IS_REPEATABLE | Attribute::TARGET_CLASS)]

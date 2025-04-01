@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Wire\Exception\WireException;
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\Exception\WireException;
+use Duon\Wire\Wire;
 
 class Value
 {

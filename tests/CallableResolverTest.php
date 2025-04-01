@@ -2,12 +2,12 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\CallableResolver;
-use FiveOrbs\Wire\Inject;
-use FiveOrbs\Wire\Tests\Fixtures\TestClass;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassUsingNested;
+use Duon\Wire\CallableResolver;
+use Duon\Wire\Inject;
+use Duon\Wire\Tests\Fixtures\TestClass;
+use Duon\Wire\Tests\Fixtures\TestClassUsingNested;
 
 final class CallableResolverTest extends TestCase
 {

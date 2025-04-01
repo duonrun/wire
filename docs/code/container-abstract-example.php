@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Wire\Tests\Fixtures\Container;
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Wire;
 
 interface ValueInterface
 {

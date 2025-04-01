@@ -2,17 +2,17 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire\Tests;
+namespace Duon\Wire\Tests;
 
-use FiveOrbs\Wire\Call;
-use FiveOrbs\Wire\Creator;
-use FiveOrbs\Wire\Exception\WireException;
-use FiveOrbs\Wire\Tests\Fixtures\Container;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassApp;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassCall;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassInject;
-use FiveOrbs\Wire\Tests\Fixtures\TestClassRequest;
-use FiveOrbs\Wire\Tests\TestCase;
+use Duon\Wire\Call;
+use Duon\Wire\Creator;
+use Duon\Wire\Exception\WireException;
+use Duon\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Tests\Fixtures\TestClassApp;
+use Duon\Wire\Tests\Fixtures\TestClassCall;
+use Duon\Wire\Tests\Fixtures\TestClassInject;
+use Duon\Wire\Tests\Fixtures\TestClassRequest;
+use Duon\Wire\Tests\TestCase;
 
 final class CallTest extends TestCase
 {

@@ -4,7 +4,7 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\Wire;
 
 class Model
 {

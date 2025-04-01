@@ -1,5 +1,5 @@
 {
-	"name": "fiveorbs/wire",
+	"name": "duon/wire",
 	"description": "Autowiring object creator and callable argument resolver",
 	"type": "library",
 	"keywords": [
@@ -17,23 +17,23 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"FiveOrbs\\Wire\\": "src/"
+			"Duon\\Wire\\": "src/"
 		}
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"FiveOrbs\\Wire\\Tests\\": "tests"
+			"Duon\\Wire\\Tests\\": "tests"
 		}
 	},
 	"require": {
 		"psr/container": "^2.0"
 	},
 	"require-dev": {
-		"fiveorbs/dev": "^1.0",
+		"duon/dev": "^1.0",
 		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
 		"ernst/coverlyzer": "^0.1.1",
 		"phpunit/phpunit": "^10.4",
-		"vimeo/psalm": "^5.15"
+		"vimeo/psalm": "^6.10"
 	},
 	"scripts": {
 		"test": [

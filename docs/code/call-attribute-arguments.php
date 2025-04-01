@@ -4,8 +4,8 @@ declare(strict_types=1);
 
 require __DIR__ . '/../../vendor/autoload.php';
 
-use FiveOrbs\Wire\Call;
-use FiveOrbs\Wire\Wire;
+use Duon\Wire\Call;
+use Duon\Wire\Wire;
 
 #[Call('setString', str: 'Coming from attribute')]
 class Model

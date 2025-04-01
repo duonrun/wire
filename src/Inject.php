@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire;
+namespace Duon\Wire;
 
 use Attribute;
 

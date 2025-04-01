@@ -2,9 +2,9 @@
 
 declare(strict_types=1);
 
-namespace FiveOrbs\Wire;
+namespace Duon\Wire;
 
-use FiveOrbs\Wire\Exception\WireException;
+use Duon\Wire\Exception\WireException;
 use Psr\Container\ContainerInterface as Container;
 use ReflectionClass;
 use ReflectionObject;
