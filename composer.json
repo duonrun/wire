@@ -58,7 +58,6 @@
 		"github": [
 			"composer docstest",
 			"composer coverage",
-			"composer check-github",
 			"composer lint"
 		],
 		"docs": [
