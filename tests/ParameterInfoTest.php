@@ -36,8 +36,8 @@ final class ParameterInfoTest extends TestCase
 		$param = $rfun->getParameters()[0];
 
 		$this->assertSame(
-			'Duon\Wire\Tests\ParameterInfoTest::Duon\Wire\Tests\{closure}' .
-			'(..., Duon\Wire\Tests\Fixtures\TestClassApp $app, ...)',
+			'Duon\Wire\Tests\ParameterInfoTest::{closure:Duon\Wire\Tests\ParameterInfoTest' .
+			'::testParameterInfoFunction():33}(..., Duon\Wire\Tests\Fixtures\TestClassApp $app, ...)',
 			ParameterInfo::info($param),
 		);
 	}
