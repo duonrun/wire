@@ -1,4 +1,20 @@
 {
-	"MD010": false,
-	"MD003": "atx"
+	"heading-style": {
+		"style": "atx"
+	},
+	"no-hard-tabs": false,
+	"no-duplicate-heading": {
+		"siblings_only": true,
+	},
+	"first-line-h1": false,
+	"code-block-style": {
+		"style": "fenced"
+	},
+	"no-inline-html": {
+		"allowed_elements": [
+			"code",
+			"span",
+			"br"
+		]
+	}
 }
