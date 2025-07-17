@@ -14,19 +14,17 @@ will only be used to inject dependencies if the type of a parameter is not
 already registered in the container.
 
 !!! warn "Do not refuse to use the container"
-
     Only in the simplest cases is a container not necessary. If only one of
     your dependencies requires a literal argument, you are doomed. Most of the
     time it is a good idea to combine ***Wire*** with a container
     implementation.
 
 !!! warn "Be warned about the simplified examples"
-
     In the examples, we utilize a very basic container mock, which is also used
     in ***Wire***'s test suite. More often than not, in the following code
     snippets, we store initialized objects in the container mock. We do this
-    only to be able to show easy to understand code.  
-
+    only to be able to show easy to understand code.
+	<br><br>
     Of course, you should utilize a fully fledged container implementation and
     leverage its functionality to retrieve values that cannot be resolved by
     ***Wire***.
@@ -72,11 +70,12 @@ same way:
 ```
 
 !!! warn "Note"
-
     If don't want to use the `Wire` factory to create a resolver you have to
     pass the container via the `Creator` that is needed for all resolver
-    constructors.  
-
-    More information:
-    [Creating the creator without factory](creator.md/#creating-the-creator-without-the-wire-factory) and
-    [Creating resolvers without factory](resolvers.md/#creating-the-resolvers-without-the-wire-factory)
+    constructors.
+	<br><br>
+    More information:  
+    [Creating the creator without factory](
+		creator.md/#creating-the-creator-without-the-wire-factory) and
+    [Creating resolvers without factory](
+		resolvers.md/#creating-the-resolvers-without-the-wire-factory)

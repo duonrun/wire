@@ -1,8 +1,4 @@
----
-title: The Inject Attribute
----
-The Inject Attribute
-==================
+# The Inject Attribute
 
 By annotating function or method parameters with an `Inject` attribute, you can
 tell the resolvers and, consequently, the creator how to obtain arguments that
@@ -11,15 +7,14 @@ default. This means that you can use it to override ***Wire***'s default
 behavior, for example when you want to choose one of several alternatives or
 when there are literal arguments such as strings, numbers or arrays expected.
 
-Example
--------
+## Example
 
 Let's assume you have two different functions, each of which requires a `Model`
 object as input. But you want to ensure that one of the functions always
 receives a `SubModel` instance, which is a subclass of `Model`. The following
 example shows how to accomplish that:
 
-```
+```php
 --8<-- "inject-example.php:7"
 ```
 
@@ -28,14 +23,13 @@ by annotating the parameter it with an `Inject` attribute. If the parameter is
 not annotated, the resolver would create an object of the base class `Model`
 because the type of the parameter `$model` is `Model`.
 
-How to use
-----------
+## How to use
 
-Simply add the `Inject` attribute to a parameter of a callable or constructor that you want
-to control. You pass a mandatory argument with
-the value you want the callable's argument to have, or, if it's not a literal,
-with an identifier from which the value is derived ([see below for a detailed
-description](#how-injected-argument-values-are-determined)). 
+Simply add the `Inject` attribute to a parameter of a callable or constructor
+that you want to control. You pass a mandatory argument with the value you want
+the callable's argument to have, or, if it's not a literal, with an identifier
+from which the value is derived ([see below for a detailed
+description](#how-injected-argument-values-are-determined)).
 
 The snippet below shows the relevant part of the example above:
 
@@ -50,8 +44,7 @@ class="hljs-params">Model <span
 class="hljs-variable">$model</span></span><br>): <span
 class="hljs-title">Model</span> </span>{ <span class="dots">...</span> </code>
 
-The `Inject` instance
----------------------
+## The `Inject` instance
 
 The first parameter `$value` of the `Inject` constructor is required and of
 type mixed. The second parameter `$type` is optional and of type
@@ -59,21 +52,20 @@ type mixed. The second parameter `$type` is optional and of type
 properties. Every additional argument is avalable via the
 `meta` property.
 
-```
+```php
 --8<-- "inject-instance.php:7"
 ```
 
-!!! info "Note" 
+!!! info "Note"
     In most cases, you will only work directly with an `Inject` instance if you
     use the Inject type `Type::Callback`. See [below](#duonwiretypecallback).
 
-How injected argument values are determined
--------------------------------------------
+## How injected argument values are determined
 
 The resolvers behave differently depending on the type of value that you want
-to be injected. 
+to be injected.
 
-!!! warn "Warning" 
+!!! warn "Warning"
     The resolver does not check if a value which was obtained with the help of
     an `Inject` attribute matches the parameters type of the callable it
     should be applied to, so handle with care.
@@ -121,8 +113,7 @@ function withLiteralParams(
 ) { ...
 ```
 
-Don't follow the rules
-----------------------
+## Don't follow the rules
 
 If you want to bypass the string rules or be explicit about the values you
 inject, you can specifiy the type of the injected value.
@@ -159,7 +150,7 @@ public function myCallable(
     #[Inject('container.entry.id', Type::Entry)]
     Object $value
 ): void 
-``` 
+```
 
 ``` php
 $container->add(\Your\Interface::class, new Object());
@@ -169,16 +160,17 @@ public function myCallable(
     \Your\Interface $value
 ): void 
 ```
-### `Duon\Wire\Type::Create`  
+
+### `Duon\Wire\Type::Create`
 
 Must be a fully qualified class name which the creator attemtps to create.
 
 ``` php
 public function myCallable(
-     #[Inject(SubModel::class, Type::Create)] 
+     #[Inject(SubModel::class, Type::Create)]
      Model $value
-): void 
-``` 
+): void
+```
 
 ### `Duon\Wire\Type::Env`  
 
@@ -193,15 +185,15 @@ public function myCallable(
 ): void {
     // $value has now the content of the environment variable PATH
 }
-``` 
-### `Duon\Wire\Type::Callback`  
+```
+
+### `Duon\Wire\Type::Callback`
 
 All resolving methods, like `Creator::create` or `CallableResolver::resolve`,
 accept a callback function for the parameter `$injectCallback` that
 will be passed all `Inject` attributes of type `Type::Callback`. The returned value
 of the callback is then used for the annotated parameter.
 
-
-```
+```php
 --8<-- "inject-callback.php:7"
 ```

@@ -62,9 +62,9 @@
 		],
 		"docs": [
 			"composer docstest",
-			"./venv/bin/python ./venv/bin/mkdocs build"
+			"./.venv/bin/python ./.venv/bin/mkdocs build"
 		],
-		"docserve": "./venv/bin/python ./venv/bin/mkdocs serve",
+		"docserve": "./.venv/bin/python ./.venv/bin/mkdocs serve",
 		"docstest": "./vendor/bin/docs-test-runner ./docs/code"
 	},
 	"config": {

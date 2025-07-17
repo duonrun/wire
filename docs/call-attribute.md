@@ -27,7 +27,6 @@ If you create an object using the creator and the class is annotated with one
 or more `Call` attributes, autowiring will automatically invoke any method
 specified in the attribute(s) as the first argument.
 
-
 ```php
 --8<-- "call-attribute-example.php:7"
 ```

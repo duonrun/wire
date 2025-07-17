@@ -3,7 +3,7 @@
 ***Wire***'s object `Creator` class helps you create instances of classes for
 which you don't have their constructor arguments at hand. It attempts to obtain
 or gather all the required values by analyzing the types of the constructor
-parameters of the class. 
+parameters of the class.
 
 ## Basic usage of the object creator
 
@@ -30,7 +30,7 @@ resolved, or until it encounters an unresolvable parameter.
 
 ## Factory methods
 
-If a class uses a static factory method to create an instance, you can pass the 
+If a class uses a static factory method to create an instance, you can pass the
 name of the method to `Creator::create`:
 
 ```php
