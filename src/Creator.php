@@ -5,9 +5,9 @@ declare(strict_types=1);
 namespace Duon\Wire;
 
 use Duon\Wire\Exception\WireException;
+use Override;
 use Psr\Container\ContainerInterface as Container;
 use ReflectionClass;
-use ReflectionObject;
 use Throwable;
 
 /** @psalm-api */
@@ -15,10 +15,13 @@ class Creator implements CreatorInterface
 {
 	use ResolvesAbstractFunctions;
 
+	/** @var array<class-string, ReflectionClass> */
+	private static array $reflectionCache = [];
+
 	public function __construct(protected readonly Container|WireContainer|null $container = null) {}
 
 	/** @psalm-param class-string $class */
-	#[\Override]
+	#[Override]
 	public function create(
 		string $class,
 		array $predefinedArgs = [],
@@ -29,7 +32,7 @@ class Creator implements CreatorInterface
 		try {
 			if ($constructor !== '') {
 				// Factory method
-				$rmethod = (new ReflectionClass($class))->getMethod($constructor);
+				$rmethod = self::getReflectionClass($class)->getMethod($constructor);
 				$args = $this->resolveArgs(
 					$rmethod,
 					predefinedArgs: $predefinedArgs,
@@ -78,7 +81,7 @@ class Creator implements CreatorInterface
 		array $predefinedTypes,
 		callable|null $injectCallback,
 	): object {
-		$rcls = new ReflectionClass($class);
+		$rcls = self::getReflectionClass($class);
 
 		// Regular constructor
 		$args = (new ConstructorResolver($this))->resolve(
@@ -96,7 +99,7 @@ class Creator implements CreatorInterface
 		array $predefinedTypes = [],
 		?callable $injectCallback = null,
 	): object {
-		$callAttrs = (new ReflectionObject($instance))->getAttributes(Call::class);
+		$callAttrs = self::getReflectionClass($instance::class)->getAttributes(Call::class);
 
 		// See if the attribute itself has one or more Call attributes. If so,
 		// resolve/autowire the arguments of the method it states and call it.
@@ -118,13 +121,21 @@ class Creator implements CreatorInterface
 		return $instance;
 	}
 
-	#[\Override]
+	/**
+	 * @param class-string $class
+	 */
+	private static function getReflectionClass(string $class): ReflectionClass
+	{
+		return self::$reflectionCache[$class] ??= new ReflectionClass($class);
+	}
+
+	#[Override]
 	public function container(): ?Container
 	{
 		return $this->container;
 	}
 
-	#[\Override]
+	#[Override]
 	public function creator(): CreatorInterface
 	{
 		return $this;
