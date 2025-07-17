@@ -32,6 +32,7 @@ class ConstructorResolver
 		return $predefinedArgs;
 	}
 
+	#[\Override]
 	public function creator(): CreatorInterface
 	{
 		return $this->creator;

@@ -6,4 +6,4 @@ namespace Duon\Wire\Exception;
 
 use RuntimeException;
 
-class WireException extends RuntimeException {}
+final class WireException extends RuntimeException {}

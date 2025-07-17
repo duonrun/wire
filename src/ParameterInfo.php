@@ -7,7 +7,7 @@ namespace Duon\Wire;
 use ReflectionMethod;
 use ReflectionParameter;
 
-class ParameterInfo
+final class ParameterInfo
 {
 	public static function info(ReflectionParameter $param): string
 	{

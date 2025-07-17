@@ -29,6 +29,7 @@ class CallableResolver
 		return $this->resolveArgs($rfn, $predefinedArgs, $predefinedTypes, $injectCallback);
 	}
 
+	#[\Override]
 	public function creator(): CreatorInterface
 	{
 		return $this->creator;

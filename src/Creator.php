@@ -18,6 +18,7 @@ class Creator implements CreatorInterface
 	public function __construct(protected readonly Container|WireContainer|null $container = null) {}
 
 	/** @psalm-param class-string $class */
+	#[\Override]
 	public function create(
 		string $class,
 		array $predefinedArgs = [],
@@ -117,11 +118,13 @@ class Creator implements CreatorInterface
 		return $instance;
 	}
 
+	#[\Override]
 	public function container(): ?Container
 	{
 		return $this->container;
 	}
 
+	#[\Override]
 	public function creator(): CreatorInterface
 	{
 		return $this;
