@@ -9,12 +9,16 @@
 		"ioc"
 	],
 	"license": "MIT",
+	"minimum-stability": "dev",
+	"prefer-stable": true,
 	"authors": [
 		{
-			"name": "ebene fünf GmbH",
-			"email": "info@ebenefuenf.de"
+			"name": "Ernst",
+			"email": "ernst@duon.run",
+			"role": "Developer"
 		}
 	],
+	"homepage": "https://duon.run/wire",
 	"autoload": {
 		"psr-4": {
 			"Duon\\Wire\\": "src/"
@@ -26,50 +30,32 @@
 		}
 	},
 	"require": {
+		"php": "^8.5",
 		"psr/container": "^2.0"
 	},
 	"require-dev": {
-		"duon/dev": "dev-main",
-		"dealerdirect/phpcodesniffer-composer-installer": "^1.0",
-		"ernst/coverlyzer": "^0.2",
-		"phpunit/phpunit": "^12.0",
-		"vimeo/psalm": "^6.13"
+		"duon/dev": "v2.4"
 	},
 	"scripts": {
-		"test": [
-			"composer docstest",
-			"./vendor/bin/phpunit --testdox --no-coverage --colors=always"
-		],
-		"check": "./vendor/bin/psalm --no-cache",
-		"check-github": "./vendor/bin/psalm --output-format=github --shepherd",
-		"lint": "./vendor/bin/phpcs -s -p src tests docs/code",
+		"test": "./vendor/bin/phpunit --testdox --no-coverage --colors=always",
+		"docstest": "./vendor/bin/docs-test-runner ./docs/code",
+		"types": "./vendor/bin/psalm --no-cache",
+		"mdlint": "markdownlint-cli2 README.md CHANGELOG.md LICENSE.md docs/",
 		"coverage": [
-			"./vendor/bin/phpunit --testdox --coverage-clover=clover.xml --coverage-text --coverage-php=coverage/cover.php  --colors=always",
+			"./vendor/bin/phpunit --testdox --path-coverage --coverage-text --coverage-php=coverage/cover.php --colors=always",
 			"./vendor/bin/coverlyzer coverage/cover.php"
 		],
-		"mdlint": "markdownlint README.md CHANGELOG.md LICENSE.md docs/",
 		"ci": [
-			"composer docstest",
+			"composer doctest",
 			"composer coverage",
-			"composer check",
-			"composer lint",
+			"composer types",
 			"composer mdlint"
 		],
-		"github": [
-			"composer docstest",
-			"composer coverage",
-			"composer lint"
+		"post-install-cmd": [
+			"Duon\\Development\\Config::sync"
 		],
-		"docs": [
-			"composer docstest",
-			"./.venv/bin/python ./.venv/bin/mkdocs build"
-		],
-		"docserve": "./.venv/bin/python ./.venv/bin/mkdocs serve",
-		"docstest": "./vendor/bin/docs-test-runner ./docs/code"
-	},
-	"config": {
-		"allow-plugins": {
-			"dealerdirect/phpcodesniffer-composer-installer": true
-		}
+		"post-update-cmd": [
+			"Duon\\Development\\Config::sync"
+		]
 	}
 }

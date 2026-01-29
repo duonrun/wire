@@ -1,10 +1,10 @@
 # Duon Wire
 
 [![Software License](https://img.shields.io/badge/license-MIT-brightgreen.svg)](LICENSE.md)
-[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duoncode/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
-[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duoncode/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
-[![Psalm level](https://shepherd.dev/github/duoncode/wire/level.svg?)](https://shepherd.dev/github/duoncode/wire)
-[![Psalm coverage](https://shepherd.dev/github/duoncode/wire/coverage.svg?)](https://shepherd.dev/github/duoncode/wire)
+[![Codacy Badge](https://app.codacy.com/project/badge/Grade/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duonrun/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_grade)
+[![Codacy Badge](https://app.codacy.com/project/badge/Coverage/c68a57b831854a7f9aa8c55461576feb)](https://app.codacy.com/gh/duonrun/wire/dashboard?utm_source=gh&utm_medium=referral&utm_content=&utm_campaign=Badge_coverage)
+[![Psalm level](https://shepherd.dev/github/duonrun/wire/level.svg?)](https://shepherd.dev/github/duonrun/wire)
+[![Psalm coverage](https://shepherd.dev/github/duonrun/wire/coverage.svg?)](https://shepherd.dev/github/duonrun/wire)
 
 > [!WARNING]  
 > This library is under active development, so some of the features
