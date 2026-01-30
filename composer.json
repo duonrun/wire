@@ -9,13 +9,10 @@
 		"ioc"
 	],
 	"license": "MIT",
-	"minimum-stability": "dev",
-	"prefer-stable": true,
 	"authors": [
 		{
-			"name": "Ernst",
-			"email": "ernst@duon.run",
-			"role": "Developer"
+			"name": "Thomas Ernst",
+			"email": "duon@ebenefuenf.de"
 		}
 	],
 	"homepage": "https://duon.run/wire",
@@ -34,7 +31,7 @@
 		"psr/container": "^2.0"
 	},
 	"require-dev": {
-		"duon/dev": "v2.4"
+		"duon/dev": "^2.5"
 	},
 	"scripts": {
 		"test": "./vendor/bin/phpunit --testdox --no-coverage --colors=always",
@@ -50,12 +47,6 @@
 			"composer coverage",
 			"composer types",
 			"composer mdlint"
-		],
-		"post-install-cmd": [
-			"Duon\\Development\\Config::sync"
-		],
-		"post-update-cmd": [
-			"Duon\\Development\\Config::sync"
 		]
 	}
 }
