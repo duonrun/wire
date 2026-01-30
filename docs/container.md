@@ -16,18 +16,18 @@ already registered in the container.
 !!! warn "Do not refuse to use the container"
     Only in the simplest cases is a container not necessary. If only one of
     your dependencies requires a literal argument, you are doomed. Most of the
-    time it is a good idea to combine ***Wire*** with a container
+    time it is a good idea to combine **_Wire_** with a container
     implementation.
 
 !!! warn "Be warned about the simplified examples"
     In the examples, we utilize a very basic container mock, which is also used
-    in ***Wire***'s test suite. More often than not, in the following code
+    in **_Wire_**'s test suite. More often than not, in the following code
     snippets, we store initialized objects in the container mock. We do this
     only to be able to show easy to understand code.
 	<br><br>
     Of course, you should utilize a fully fledged container implementation and
     leverage its functionality to retrieve values that cannot be resolved by
-    ***Wire***.
+    **_Wire_**.
 
 ## The Problem
 

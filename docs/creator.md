@@ -1,6 +1,6 @@
 # The Object Creator
 
-***Wire***'s object `Creator` class helps you create instances of classes for
+**_Wire_**'s object `Creator` class helps you create instances of classes for
 which you don't have their constructor arguments at hand. It attempts to obtain
 or gather all the required values by analyzing the types of the constructor
 parameters of the class.

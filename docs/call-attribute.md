@@ -14,7 +14,7 @@ Given the following simplified example:
 --8<-- "call-attribute-classes.php:7:30"
 ```
 
-Without ***Wire***'s help, you need to create a `Model` instance, and then call
+Without **_Wire_**'s help, you need to create a `Model` instance, and then call
 the `setValue` method, passing a `Value` object as an argument.
 
 ```php

@@ -1,6 +1,6 @@
 # Duon Wire
 
-***Wire*** provides an autowiring object creator that utilizes PHP's reflection
+**_Wire_** provides an autowiring object creator that utilizes PHP's reflection
 capabilities to automatically resolve constructor arguments recursively. It
 additionally comes with classes that assist in resolving arguments of callables
 such as functions, methods, closures or class constructors. It can be combined
@@ -42,13 +42,13 @@ resolvers](resolvers.md)
 
 ## Other features
 
-* To be able to resolve generally unresolvable constructor or callable argument
+- To be able to resolve generally unresolvable constructor or callable argument
   types like literals (`string`, `int`, etc.), interfaces, or abstract classes,
-  ***Wire***'s classes can be combined with
+  **_Wire_**'s classes can be combined with
   a [PSR-11](https://www.php-fig.org/psr/psr-11/) compatible container
   implementation. See [PSR-11 Containers](container.md).
-* If an object needs additional method calls after instantiation to be properly
+- If an object needs additional method calls after instantiation to be properly
   initialized you can use the [`Call`](call-attribute.md) class attribute.
-* To override or change the default behaviour of the resolvers, or handle
+- To override or change the default behaviour of the resolvers, or handle
   literal values, you can annotate parameters of callables and constructors
   with the [Inject Attribute](inject-attribute.md).

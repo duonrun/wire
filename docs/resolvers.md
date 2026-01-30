@@ -1,6 +1,6 @@
 # Argument Resolvers
 
-***Wire*** provides two different autowiring argument resolvers, one for
+**_Wire_** provides two different autowiring argument resolvers, one for
 [callables](#resolve-callable-arguments) like functions, closures, etc and
 another for [constructors](#resolve-constructor-arguments). These resolvers
 are used internally by the creator.

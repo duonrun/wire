@@ -3,7 +3,7 @@
 By annotating function or method parameters with an `Inject` attribute, you can
 tell the resolvers and, consequently, the creator how to obtain arguments that
 cannot be resolved otherwise or to apply arguments that would not be used by
-default. This means that you can use it to override ***Wire***'s default
+default. This means that you can use it to override **_Wire_**'s default
 behavior, for example when you want to choose one of several alternatives or
 when there are literal arguments such as strings, numbers or arrays expected.
 
