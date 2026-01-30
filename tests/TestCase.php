@@ -32,7 +32,7 @@ class TestCase extends BaseTestCase
 		return new Creator($this->container());
 	}
 
-	public function throws(string $exception, string $message = null): void
+	public function throws(string $exception, ?string $message = null): void
 	{
 		$this->expectException($exception);
 
