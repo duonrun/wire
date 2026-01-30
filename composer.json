@@ -2,12 +2,7 @@
 	"name": "duon/wire",
 	"description": "Autowiring object creator and argument resolver",
 	"type": "library",
-	"keywords": [
-		"autowire",
-		"autowiring",
-		"factory",
-		"ioc"
-	],
+	"keywords": ["duon", "autowire", "autowiring", "factory", "ioc"],
 	"license": "MIT",
 	"authors": [
 		{
@@ -43,7 +38,7 @@
 			"./vendor/bin/coverlyzer coverage/cover.php"
 		],
 		"ci": [
-			"composer doctest",
+			"composer docstest",
 			"composer coverage",
 			"composer types",
 			"composer mdlint"
