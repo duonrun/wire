@@ -12,3 +12,7 @@
 __pycache__
 composer.lock
 clover.xml
+
+# Local config overrides (not committed)
+/phpunit.xml
+/psalm.xml
