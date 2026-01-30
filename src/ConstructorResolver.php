@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Duon\Wire;
 
+use Override;
 use ReflectionClass;
 
 /** @psalm-api */
@@ -32,7 +33,7 @@ class ConstructorResolver
 		return $predefinedArgs;
 	}
 
-	#[\Override]
+	#[Override]
 	public function creator(): CreatorInterface
 	{
 		return $this->creator;

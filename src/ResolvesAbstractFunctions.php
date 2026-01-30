@@ -83,14 +83,14 @@ trait ResolvesAbstractFunctions
 
 		if ($type) {
 			throw new WireException(
-				"Cannot resolve union or intersection types. Source: \n" .
-					ParameterInfo::info($param),
+				"Cannot resolve union or intersection types. Source: \n"
+					. ParameterInfo::info($param),
 			);
 		}
 
 		throw new WireException(
-			"To be resolvable, classes must have fully typed constructor parameters. Source: \n" .
-				ParameterInfo::info($param),
+			"To be resolvable, classes must have fully typed constructor parameters. Source: \n"
+				. ParameterInfo::info($param),
 		);
 	}
 

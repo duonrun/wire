@@ -5,6 +5,7 @@ declare(strict_types=1);
 namespace Duon\Wire;
 
 use Closure;
+use Override;
 use ReflectionFunction;
 
 /** @psalm-api */
@@ -29,7 +30,7 @@ class CallableResolver
 		return $this->resolveArgs($rfn, $predefinedArgs, $predefinedTypes, $injectCallback);
 	}
 
-	#[\Override]
+	#[Override]
 	public function creator(): CreatorInterface
 	{
 		return $this->creator;

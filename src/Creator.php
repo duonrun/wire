@@ -79,7 +79,7 @@ class Creator implements CreatorInterface
 		string $class,
 		array $predefinedArgs,
 		array $predefinedTypes,
-		callable|null $injectCallback,
+		?callable $injectCallback,
 	): object {
 		$rcls = self::getReflectionClass($class);
 

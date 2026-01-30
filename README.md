@@ -11,7 +11,7 @@
 > listed and parts of the documentation may be still experimental, subject to
 > change, or missing.
 
-***Wire*** provides an autowiring object creator that utilizes PHP's reflection
+**_Wire_** provides an autowiring object creator that utilizes PHP's reflection
 capabilities to automatically resolve constructor arguments recursively. It
 additionally comes with classes that assist in resolving arguments of callables
 such as functions, methods, closures or class constructors. It can be combined
@@ -22,7 +22,7 @@ objects by resolving their dependencies. Using PHP's reflection API, **Wire**
 recursively analyzes and fulfills constructor arguments without manual
 configuration. It additionally includes utilities for resolving dependencies in
 various callable types—including functions, methods, closures, and class
-constructors. **Wire* seamlessly integrates with PSR-11 compliant dependency
+constructors. **_Wire_** seamlessly integrates with PSR-11 compliant dependency
 injection containers.
 
 Documentation can be found on the website: [duon.sh/wire](https://duon.sh/wire/)
@@ -67,4 +67,4 @@ assert($model->value() === 'Autowired Value');
 
 Duon Wire is released under the MIT [license](LICENSE.md).
 
-Copyright © 2023-2024 ebene fünf GmbH. All rights reserved.
+Copyright Thomas Ernst. All rights reserved.

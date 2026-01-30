@@ -6,7 +6,7 @@ namespace Duon\Wire;
 
 use Duon\Wire\Exception\WireException;
 
-readonly final class Injected
+final readonly class Injected
 {
 	public static function value(
 		Inject $inject,

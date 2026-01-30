@@ -21,9 +21,9 @@ final class ParameterInfoTest extends TestCase
 		$param = $constructor->getParameters()[0];
 
 		$this->assertSame(
-			'Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor::__construct(' .
-			'..., Duon\Wire\Tests\Fixtures\TestClassApp|' .
-			'Duon\Wire\Tests\Fixtures\TestClassRequest $param, ...)',
+			'Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor::__construct('
+			. '..., Duon\Wire\Tests\Fixtures\TestClassApp|'
+			. 'Duon\Wire\Tests\Fixtures\TestClassRequest $param, ...)',
 			ParameterInfo::info($param),
 		);
 	}
@@ -36,8 +36,8 @@ final class ParameterInfoTest extends TestCase
 		$param = $rfun->getParameters()[0];
 
 		$this->assertSame(
-			'Duon\Wire\Tests\ParameterInfoTest::{closure:Duon\Wire\Tests\ParameterInfoTest' .
-			'::testParameterInfoFunction():33}(..., Duon\Wire\Tests\Fixtures\TestClassApp $app, ...)',
+			'Duon\Wire\Tests\ParameterInfoTest::{closure:Duon\Wire\Tests\ParameterInfoTest'
+			. '::testParameterInfoFunction():33}(..., Duon\Wire\Tests\Fixtures\TestClassApp $app, ...)',
 			ParameterInfo::info($param),
 		);
 	}
