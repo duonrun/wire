@@ -65,6 +65,4 @@ assert($model->value() === 'Autowired Value');
 
 ## License
 
-Duon Wire is released under the MIT [license](LICENSE.md).
-
-Copyright Thomas Ernst. All rights reserved.
+This project is licensed under the [MIT license](LICENSE.md).
