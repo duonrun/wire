@@ -4,13 +4,22 @@ All notable changes to this project will be documented in this file.
 
 This project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## Unreleased
+## [0.4.0](https://github.com/duon/wire/releases/tag/0.4.0) - 2026-01-30
 
 ### Breaking Changes
 
-- Add and use the `WireContainer` interface.
-- `CreatorInterface::create`'s parameter `$constructor` is now of type `string`
-  instead of `string|null`.
+- Renamed Composer package to `duon/wire` and namespaces to `Duon\Wire\*`
+  (previously `conia/wire` / `Conia\Wire\*`).
+- Required PHP 8.5.
+- Added and used the `WireContainer` interface for containers that use Wire
+  internally to avoid dependency cycles (requires implementing
+  `WireContainer::definition()`).
+- `CreatorInterface::create()` parameter `$constructor` is now a `string`
+  defaulting to `''` instead of `string|null`.
+
+### Changed
+
+- Improved performance by caching `ReflectionClass` instances in `Creator`.
 
 ## [0.3.0](https://github.com/duon/wire/releases/tag/0.3.0) - 2024-01-18
 
