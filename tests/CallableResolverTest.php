@@ -5,8 +5,10 @@ declare(strict_types=1);
 namespace Duon\Wire\Tests;
 
 use Duon\Wire\CallableResolver;
+use Duon\Wire\Creator;
 use Duon\Wire\Inject;
 use Duon\Wire\Tests\Fixtures\TestClass;
+use Duon\Wire\Tests\Fixtures\TestClassApp;
 use Duon\Wire\Tests\Fixtures\TestClassUsingNested;
 
 final class CallableResolverTest extends TestCase
@@ -70,5 +72,17 @@ final class CallableResolverTest extends TestCase
 
 		$this->assertSame('callback injected id', $result->tcn->callback);
 		$this->assertSame('predefined-value', $result->tcn->predefined->value);
+	}
+
+	public function testResolverUsesScopeLocalValues(): void
+	{
+		$root = $this->scopedWireContainer();
+		$root->add(TestClassApp::class, new TestClassApp('root'));
+		$scope = $root->scope();
+		$scope->add(TestClassApp::class, new TestClassApp('scope'));
+		$resolver = new CallableResolver(new Creator($scope));
+		$args = $resolver->resolve(fn(TestClassApp $app): string => $app->app());
+
+		$this->assertSame('scope', $args[0]->app());
 	}
 }

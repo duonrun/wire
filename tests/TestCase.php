@@ -6,6 +6,7 @@ namespace Duon\Wire\Tests;
 
 use Duon\Wire\Creator;
 use Duon\Wire\Tests\Fixtures\Container;
+use Duon\Wire\Tests\Fixtures\ScopedWireContainer;
 use Duon\Wire\Tests\Fixtures\WireizedContainer;
 use PHPUnit\Framework\TestCase as BaseTestCase;
 
@@ -25,6 +26,11 @@ class TestCase extends BaseTestCase
 		$container->add(Container::class, $container);
 
 		return $container;
+	}
+
+	public function scopedWireContainer(): ScopedWireContainer
+	{
+		return new ScopedWireContainer();
 	}
 
 	public function creator(): Creator

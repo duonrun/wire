@@ -189,4 +189,56 @@ final class CreatorTest extends TestCase
 		$this->assertInstanceof(TestClass::class, $testobj);
 		$this->assertSame('text', $testobj->str);
 	}
+
+	public function testResolveInterfaceMappingFromWireContainer(): void
+	{
+		$container = $this->wireContainer();
+		$container->add(TestInterface::class, TestClass::class);
+		$creator = new Creator($container);
+		$testobj = $creator->create(TestInterface::class);
+
+		$this->assertInstanceOf(TestClass::class, $testobj);
+	}
+
+	public function testScopeDefinitionCanResolveParentEntry(): void
+	{
+		$root = $this->scopedWireContainer();
+		$root->add(TestClass::class, TestClass::class);
+		$scope = $root->scope();
+
+		$this->assertSame(TestClass::class, $scope->definition(TestClass::class));
+	}
+
+	public function testResolveParentOwnedSharedEntryThroughScope(): void
+	{
+		$root = $this->scopedWireContainer();
+		$root->add(TestClass::class, fn() => new TestClass('shared'));
+		$scope1 = $root->scope();
+		$scope2 = $root->scope();
+		$creator1 = new Creator($scope1);
+		$creator2 = new Creator($scope2);
+		$instance11 = $creator1->create(TestClass::class);
+		$instance12 = $creator1->create(TestClass::class);
+		$instance2 = $creator2->create(TestClass::class);
+
+		$this->assertSame(true, $scope1->has(TestClass::class));
+		$this->assertSame($instance11, $instance12);
+		$this->assertSame($instance11, $instance2);
+	}
+
+	public function testResolveParentOwnedScopedEntryThroughScope(): void
+	{
+		$root = $this->scopedWireContainer();
+		$root->add(TestClass::class, fn() => new TestClass('scoped'), $root::Scoped);
+		$scope1 = $root->scope();
+		$scope2 = $root->scope();
+		$creator1 = new Creator($scope1);
+		$creator2 = new Creator($scope2);
+		$instance11 = $creator1->create(TestClass::class);
+		$instance12 = $creator1->create(TestClass::class);
+		$instance2 = $creator2->create(TestClass::class);
+
+		$this->assertSame($instance11, $instance12);
+		$this->assertNotSame($instance11, $instance2);
+	}
 }

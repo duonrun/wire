@@ -98,6 +98,19 @@ final class InjectTest extends TestCase
 		$this->assertSame('test-env-value', $result['env']);
 	}
 
+	public function testInjectEntryResolvesScopeFirst(): void
+	{
+		$root = $this->scopedWireContainer();
+		$root->add('the-entry', new TestClassApp('root-entry'));
+		$scope = $root->scope();
+		$scope->add('the-entry', new TestClassApp('scope-entry'));
+		$resolver = new CallableResolver(new Creator($scope));
+		$args = $resolver->resolve([TestClassInject::class, 'injectTypes']);
+		$result = TestClassInject::injectTypes(...$args);
+
+		$this->assertSame('scope-entry', $result['entry']->app());
+	}
+
 	public function testInjectSimpleString(): void
 	{
 		$resolver = new CallableResolver(new Creator());

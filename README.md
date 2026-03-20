@@ -58,6 +58,12 @@ assert($model instanceof Model);
 assert($model->value() === 'Autowired Value');
 ```
 
+## Scoped container usage
+
+When you pass a scoped container to `Creator`, callable resolvers and `Inject` entry lookups resolve against that current scope first.
+
+This allows parent-owned definitions (for example root shared services) and scope-local overrides (for example request-local values) to work together safely.
+
 ## License
 
 This project is licensed under the [MIT license](LICENSE.md).

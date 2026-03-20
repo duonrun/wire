@@ -47,7 +47,7 @@ class Creator implements CreatorInterface
 
 					if (is_string($value) && class_exists($value)) {
 						$instance = $this->resolveConstructor(
-							$class,
+							$value,
 							$predefinedArgs,
 							$predefinedTypes,
 							$injectCallback,
