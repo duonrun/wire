@@ -24,7 +24,7 @@ final readonly class Injected
 		};
 	}
 
-	protected static function getValue(
+	private static function getValue(
 		CreatorInterface $creator,
 		mixed $value,
 		array $predefinedTypes,
@@ -53,7 +53,7 @@ final readonly class Injected
 		return $value;
 	}
 
-	protected static function getEntry(
+	private static function getEntry(
 		CreatorInterface $creator,
 		string $value,
 		array $predefinedTypes,
@@ -71,7 +71,7 @@ final readonly class Injected
 		return $container->get($value);
 	}
 
-	protected static function getObject(
+	private static function getObject(
 		CreatorInterface $creator,
 		mixed $value,
 		array $predefinedTypes,
@@ -88,7 +88,7 @@ final readonly class Injected
 		);
 	}
 
-	protected static function getEnvVar(mixed $value): bool|string
+	private static function getEnvVar(mixed $value): bool|string
 	{
 		if (!is_string($value)) {
 			throw new WireException('Environment variable must be a string!');
@@ -97,7 +97,7 @@ final readonly class Injected
 		return getenv($value);
 	}
 
-	protected static function getFromCallback(Inject $inject, ?callable $injectCallback): mixed
+	private static function getFromCallback(Inject $inject, ?callable $injectCallback): mixed
 	{
 		if (is_callable($injectCallback)) {
 			return $injectCallback($inject);
