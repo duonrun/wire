@@ -20,7 +20,9 @@ final class ParameterInfo
 		}
 
 		return (
-			($rcls ? $rcls->getName() . '::' : '') . $rfn->getName() . '(..., '
+			($rcls ? $rcls->getName() . '::' : '')
+			. $rfn->getName()
+			. '(..., '
 			. ($type ? (string) $type . ' ' : '')
 			. '$'
 			. $param->getName()
