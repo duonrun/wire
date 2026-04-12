@@ -5,7 +5,6 @@ declare(strict_types=1);
 namespace Duon\Wire\Tests\Fixtures;
 
 use Duon\Wire\Call;
-use Duon\Wire\Tests\Fixtures\Container;
 
 #[Call('method1'), Call('method2', arg2: 'arg2', arg1: 'arg1')]
 class TestClassCall

@@ -13,7 +13,6 @@ use Duon\Wire\Tests\Fixtures\Container;
 use Duon\Wire\Tests\Fixtures\TestClass;
 use Duon\Wire\Tests\Fixtures\TestClassApp;
 use Duon\Wire\Tests\Fixtures\TestClassInject;
-use Duon\Wire\Tests\TestCase;
 use Duon\Wire\Type;
 
 final class InjectTest extends TestCase

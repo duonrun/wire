@@ -71,7 +71,7 @@ class Creator implements CreatorInterface
 				);
 			}
 
-			assert(is_object($instance));
+			assert(is_object($instance), 'Created instance must be an object');
 
 			return $this->applyCallAttributes($instance, $predefinedTypes, $injectCallback);
 		} catch (Throwable $e) {

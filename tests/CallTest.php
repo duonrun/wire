@@ -12,7 +12,6 @@ use Duon\Wire\Tests\Fixtures\TestClassApp;
 use Duon\Wire\Tests\Fixtures\TestClassCall;
 use Duon\Wire\Tests\Fixtures\TestClassInject;
 use Duon\Wire\Tests\Fixtures\TestClassRequest;
-use Duon\Wire\Tests\TestCase;
 
 final class CallTest extends TestCase
 {
