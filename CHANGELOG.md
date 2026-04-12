@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [Unreleased](https://github.com/duonrun/wire/compare/0.4.0...HEAD)
 
 ### Changed
 
@@ -11,14 +11,10 @@
 
 ### Breaking Changes
 
-- Renamed Composer package to `duonrun/wire` and namespaces to `Duon\Wire\*`
-  (previously `conia/wire` / `Conia\Wire\*`).
+- Renamed Composer package to `duonrun/wire` and namespaces to `Duon\Wire\*` (previously `conia/wire` / `Conia\Wire\*`).
 - Required PHP 8.5.
-- Added and used the `WireContainer` interface for containers that use Wire
-  internally to avoid dependency cycles (requires implementing
-  `WireContainer::definition()`).
-- `CreatorInterface::create()` parameter `$constructor` is now a `string`
-  defaulting to `''` instead of `string|null`.
+- Added and used the `WireContainer` interface for containers that use Wire internally to avoid dependency cycles (requires implementing `WireContainer::definition()`).
+- `CreatorInterface::create()` parameter `$constructor` is now a `string` defaulting to `''` instead of `string|null`.
 
 ### Changed
 
@@ -28,8 +24,7 @@
 
 ### Breaking Changes
 
-- Changed the `Inject` attribute so that is is now annotated to parameters
-  instead of functions or methods.
+- Changed the `Inject` attribute so that is is now annotated to parameters instead of functions or methods.
 
 ### Added
 
@@ -37,9 +32,7 @@
 - The optional `injectCallback` parameter to `Creator::create`.
 - The optional `injectCallback` parameter to `CallableResolver::resolve`.
 - The optional `injectCallback` parameter to `ConstructorResolver::resolve`.
-- `Creator` now returns the container entry of the requested class if it
-  exists. This way it supports instantiating interfaces if they are registered
-  in the container.
+- `Creator` now returns the container entry of the requested class if it exists. This way it supports instantiating interfaces if they are registered in the container.
 
 ## [0.2.0](https://github.com/duonrun/wire/releases/tag/0.2.0) (2024-01-05)
 
@@ -57,8 +50,7 @@ Initial release.
 
 ### Added
 
-- The `Wire` factory, which produces `Creator`, `CallableResolver` and
-  `ContstructorResolver` instances.
+- The `Wire` factory, which produces `Creator`, `CallableResolver` and `ContstructorResolver` instances.
 - The `Inject` attribute.
 - The `Call` attribute.
 - The ability to be combined with PSR-11 containers.
