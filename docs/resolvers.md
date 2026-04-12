@@ -59,7 +59,7 @@ The constructor resolver works the same way:
 
 ## Using a PSR-11 container
 
-Like the creator, resolvers can be initialized with a container to help with unresolvable parameter arguments. (See also: [PSR-11 Containers](containers.md))
+Like the creator, resolvers can be initialized with a container to help with unresolvable parameter arguments. (See also: [PSR-11 Containers](container.md))
 
 ```php
 --8<-- "resolver-constructor-container.php:7"

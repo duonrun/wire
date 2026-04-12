@@ -11,7 +11,7 @@
 
 ### Breaking Changes
 
-- Renamed Composer package to `duonrun/wire` and namespaces to `Duon\Wire\*` (previously `conia/wire` / `Conia\Wire\*`).
+- Renamed Composer package to `duon/wire` and namespaces to `Duon\Wire\*` (previously `conia/wire` / `Conia\Wire\*`).
 - Required PHP 8.5.
 - Added and used the `WireContainer` interface for containers that use Wire internally to avoid dependency cycles (requires implementing `WireContainer::definition()`).
 - `CreatorInterface::create()` parameter `$constructor` is now a `string` defaulting to `''` instead of `string|null`.
