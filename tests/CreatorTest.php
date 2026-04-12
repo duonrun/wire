@@ -5,12 +5,14 @@ declare(strict_types=1);
 namespace Duon\Wire\Tests;
 
 use Duon\Wire\Creator;
+use Duon\Wire\Exception\WireException;
 use Duon\Wire\Inject;
 use Duon\Wire\Tests\Fixtures\TestClass;
 use Duon\Wire\Tests\Fixtures\TestClassApp;
 use Duon\Wire\Tests\Fixtures\TestClassCallCounter;
 use Duon\Wire\Tests\Fixtures\TestClassConstructor;
 use Duon\Wire\Tests\Fixtures\TestClassDefault;
+use Duon\Wire\Tests\Fixtures\TestClassInject;
 use Duon\Wire\Tests\Fixtures\TestClassInjectCallback;
 use Duon\Wire\Tests\Fixtures\TestClassMultiConstructor;
 use Duon\Wire\Tests\Fixtures\TestClassObjectArgs;
@@ -127,6 +129,14 @@ final class CreatorTest extends TestCase
 		$this->assertSame('non assoc', $testobj->testobj->str);
 		$this->assertSame('passed', $testobj->test);
 		$this->assertSame(true, $testobj->app instanceof TestClassApp);
+	}
+
+	public function testRejectsPositionalPredefinedArgsWhenInjectIsUsed(): void
+	{
+		$this->throws(WireException::class, 'predefined args must be named');
+
+		$creator = new Creator($this->container());
+		$creator->create(TestClassInject::class, ['positional']);
 	}
 
 	public function testResolveNestedClassesWithPredefinedAndInject(): void

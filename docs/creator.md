@@ -37,6 +37,8 @@ If a parameter has a default value and is otherwise unresolvable, the default va
 
 If you already have some or all of the arguments available to you, you can pass them to the create method by using an associative array. Predefined arguments are matched by name. When the name of the parameter to be resolved is the same as a key in the associative array, the value of that key is passed as the argument.
 
+!!! info "Inject compatibility" If the target constructor or factory method uses one or more `Inject` attributes, `predefinedArgs` must be named (associative). Positional argument lists are rejected in that case.
+
 ```php
 --8<-- "creator-predefined-arguments.php:7"
 ```

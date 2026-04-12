@@ -6,6 +6,7 @@ namespace Duon\Wire\Tests;
 
 use Duon\Wire\CallableResolver;
 use Duon\Wire\Creator;
+use Duon\Wire\Exception\WireException;
 use Duon\Wire\Inject;
 use Duon\Wire\Tests\Fixtures\TestClass;
 use Duon\Wire\Tests\Fixtures\TestClassApp;
@@ -56,6 +57,17 @@ final class CallableResolverTest extends TestCase
 
 		$this->assertInstanceOf(TestClass::class, $args[0]);
 		$this->assertSame(23, $args[1]);
+	}
+
+	public function testRejectsPositionalPredefinedArgsWhenInjectIsUsed(): void
+	{
+		$this->throws(WireException::class, 'predefined args must be named');
+
+		$resolver = new CallableResolver($this->creator());
+		$resolver->resolve(
+			static fn(#[Inject('forced')] string $value): string => $value,
+			predefinedArgs: ['positional'],
+		);
 	}
 
 	public function testNestedClassesWithPredefinedAndInject(): void

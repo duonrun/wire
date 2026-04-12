@@ -20,8 +20,14 @@ trait ResolvesAbstractFunctions
 		array $predefinedTypes,
 		?callable $injectCallback,
 	): array {
+		$injectedArgs = $this->resolveInjectedArgs($rfn, $predefinedTypes, $injectCallback);
+
+		if ($injectedArgs !== [] && array_is_list($predefinedArgs) && $predefinedArgs !== []) {
+			throw new WireException('When using Inject attributes, predefined args must be named');
+		}
+
 		$combinedArgs = array_merge(
-			$this->resolveInjectedArgs($rfn, $predefinedTypes, $injectCallback),
+			$injectedArgs,
 			$predefinedArgs,
 		);
 

@@ -6,6 +6,7 @@
 
 - `Creator` now resolves class-string definitions from `WireContainer::definition()` using the mapped class name, which keeps interface-to-class mappings working for wire-enabled containers.
 - Added scope-oriented tests to verify parent-owned definitions, callable resolution, and injected entry resolution through scoped containers.
+- Passing positional `predefinedArgs` is now rejected when a callable or constructor uses `Inject` attributes. In that case, predefined arguments must be named.
 
 ## [0.4.0](https://github.com/duonrun/wire/releases/tag/0.4.0) (2026-01-30)
 

@@ -45,6 +45,8 @@ You simply pass the fully qualified class name to the `resolve` method of the `C
 
 If you have some of the necessary arguments already at hand, you can pass them converted to an associative array to the `resolve` method's `predefinedArgs` and/or `predefinedTypes` parameters. The array's keys must match the names or types of the parameters of the callable to be resolved. For more information, especially the difference between `predefinedArgs` and `predefinedTypes`, see [`Creator`'s section about the same topic](/creator/#assist-the-creator-with-arguments-that-are-already-available), which works in a similar way.
 
+!!! info "Inject compatibility" If the target callable or constructor uses one or more `Inject` attributes, `predefinedArgs` must be named (associative). Positional argument lists are rejected in that case.
+
 An example using the callable resolver:
 
 ```php
