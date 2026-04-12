@@ -23,7 +23,9 @@ final class ScopedWireContainer implements WireContainer
 	/** @var array<non-empty-string, mixed> */
 	protected array $instances = [];
 
-	public function __construct(protected readonly ?self $parent = null) {}
+	public function __construct(
+		protected readonly ?self $parent = null,
+	) {}
 
 	public function scope(): self
 	{

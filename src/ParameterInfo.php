@@ -19,9 +19,12 @@ final class ParameterInfo
 			$rcls = $rfn->getDeclaringClass();
 		}
 
-		return ($rcls ? $rcls->getName() . '::' : '')
-			. ($rfn->getName() . '(..., ')
+		return (
+			($rcls ? $rcls->getName() . '::' : '') . $rfn->getName() . '(..., '
 			. ($type ? (string) $type . ' ' : '')
-			. '$' . $param->getName() . ', ...)';
+			. '$'
+			. $param->getName()
+			. ', ...)'
+		);
 	}
 }

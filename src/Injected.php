@@ -42,7 +42,11 @@ final readonly class Injected
 			}
 
 			if (class_exists($value)) {
-				return $creator->create($value, predefinedTypes: $predefinedTypes, injectCallback: $injectCallback);
+				return $creator->create(
+					$value,
+					predefinedTypes: $predefinedTypes,
+					injectCallback: $injectCallback,
+				);
 			}
 		}
 
@@ -77,7 +81,11 @@ final readonly class Injected
 			throw new WireException('No valid class string "' . (string) $value . '"!');
 		}
 
-		return $creator->create($value, predefinedTypes: $predefinedTypes, injectCallback: $injectCallback);
+		return $creator->create(
+			$value,
+			predefinedTypes: $predefinedTypes,
+			injectCallback: $injectCallback,
+		);
 	}
 
 	protected static function getEnvVar(mixed $value): bool|string

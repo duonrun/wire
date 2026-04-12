@@ -6,7 +6,9 @@ namespace Duon\Wire\Tests\Fixtures;
 
 class TestClass implements TestInterface
 {
-	public function __construct(public string $str = '') {}
+	public function __construct(
+		public string $str = '',
+	) {}
 
 	public function __toString(): string
 	{

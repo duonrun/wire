@@ -71,7 +71,11 @@ trait ResolvesAbstractFunctions
 			}
 
 			if (class_exists($typeName)) {
-				return $creator->create($typeName, predefinedTypes: $predefinedTypes, injectCallback: $injectCallback);
+				return $creator->create(
+					$typeName,
+					predefinedTypes: $predefinedTypes,
+					injectCallback: $injectCallback,
+				);
 			}
 
 			if ($param->isDefaultValueAvailable()) {
@@ -83,8 +87,7 @@ trait ResolvesAbstractFunctions
 
 		if ($type) {
 			throw new WireException(
-				"Cannot resolve union or intersection types. Source: \n"
-					. ParameterInfo::info($param),
+				"Cannot resolve union or intersection types. Source: \n" . ParameterInfo::info($param),
 			);
 		}
 

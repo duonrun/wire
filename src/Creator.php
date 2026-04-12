@@ -18,7 +18,9 @@ class Creator implements CreatorInterface
 	/** @var array<class-string, ReflectionClass> */
 	private static array $reflectionCache = [];
 
-	public function __construct(protected readonly Container|WireContainer|null $container = null) {}
+	public function __construct(
+		protected readonly Container|WireContainer|null $container = null,
+	) {}
 
 	/** @psalm-param class-string $class */
 	#[Override]
@@ -61,7 +63,12 @@ class Creator implements CreatorInterface
 					$instance = $this->container->get($class);
 				}
 			} else {
-				$instance = $this->resolveConstructor($class, $predefinedArgs, $predefinedTypes, $injectCallback);
+				$instance = $this->resolveConstructor(
+					$class,
+					$predefinedArgs,
+					$predefinedTypes,
+					$injectCallback,
+				);
 			}
 
 			assert(is_object($instance));
@@ -84,7 +91,7 @@ class Creator implements CreatorInterface
 		$rcls = self::getReflectionClass($class);
 
 		// Regular constructor
-		$args = (new ConstructorResolver($this))->resolve(
+		$args = new ConstructorResolver($this)->resolve(
 			$rcls,
 			predefinedArgs: $predefinedArgs,
 			predefinedTypes: $predefinedTypes,
@@ -109,7 +116,7 @@ class Creator implements CreatorInterface
 
 			/** @psalm-var callable */
 			$callable = [$instance, $methodToResolve];
-			$args = (new CallableResolver($this))->resolve(
+			$args = new CallableResolver($this)->resolve(
 				$callable,
 				predefinedArgs: $callAttr->args,
 				predefinedTypes: $predefinedTypes,

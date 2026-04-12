@@ -22,13 +22,19 @@ final class CreatorTest extends TestCase
 	{
 		$creator = new Creator($this->container());
 
-		$this->assertInstanceOf(TestClassConstructor::class, $creator->create(TestClassConstructor::class));
+		$this->assertInstanceOf(
+			TestClassConstructor::class,
+			$creator->create(TestClassConstructor::class),
+		);
 	}
 
 	public function testResolveWithPartialArgs(): void
 	{
 		$creator = new Creator();
-		$testobj = $creator->create(TestClassMultiConstructor::class, ['name' => 'chuck', 'number' => 73]);
+		$testobj = $creator->create(TestClassMultiConstructor::class, [
+			'name' => 'chuck',
+			'number' => 73,
+		]);
 
 		$this->assertInstanceOf(TestClassMultiConstructor::class, $testobj);
 		$this->assertSame('chuck', $testobj->name);
