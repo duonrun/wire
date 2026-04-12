@@ -32,6 +32,8 @@ class Creator implements CreatorInterface
 		string $constructor = '',
 	): object {
 		try {
+			$createdByWire = true;
+
 			if ($constructor !== '') {
 				// Factory method
 				$rmethod = self::getReflectionClass($class)->getMethod($constructor);
@@ -55,10 +57,12 @@ class Creator implements CreatorInterface
 							$injectCallback,
 						);
 					} else {
+						$createdByWire = false;
 						/** @psalm-suppress MixedAssignment */
 						$instance = $this->container->get($class);
 					}
 				} else {
+					$createdByWire = false;
 					/** @psalm-suppress MixedAssignment */
 					$instance = $this->container->get($class);
 				}
@@ -72,6 +76,10 @@ class Creator implements CreatorInterface
 			}
 
 			assert(is_object($instance), 'Created instance must be an object');
+
+			if (!$createdByWire) {
+				return $instance;
+			}
 
 			return $this->applyCallAttributes($instance, $predefinedTypes, $injectCallback);
 		} catch (Throwable $e) {

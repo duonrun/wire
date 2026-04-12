@@ -8,6 +8,7 @@ use Duon\Wire\Creator;
 use Duon\Wire\Inject;
 use Duon\Wire\Tests\Fixtures\TestClass;
 use Duon\Wire\Tests\Fixtures\TestClassApp;
+use Duon\Wire\Tests\Fixtures\TestClassCallCounter;
 use Duon\Wire\Tests\Fixtures\TestClassConstructor;
 use Duon\Wire\Tests\Fixtures\TestClassDefault;
 use Duon\Wire\Tests\Fixtures\TestClassInjectCallback;
@@ -168,6 +169,28 @@ final class CreatorTest extends TestCase
 
 		$this->assertInstanceof(TestClass::class, $testobj);
 		$this->assertSame('text', $testobj->str);
+	}
+
+	public function testResolveFromContainerDoesNotApplyCallAttributes(): void
+	{
+		$container = $this->container();
+		$entry = new TestClassCallCounter();
+		$container->add(TestClassCallCounter::class, $entry);
+		$creator = new Creator($container);
+		$first = $creator->create(TestClassCallCounter::class);
+		$second = $creator->create(TestClassCallCounter::class);
+
+		$this->assertSame($entry, $first);
+		$this->assertSame($first, $second);
+		$this->assertSame(0, $entry->calls);
+	}
+
+	public function testResolveWithoutContainerAppliesCallAttributes(): void
+	{
+		$creator = new Creator();
+		$entry = $creator->create(TestClassCallCounter::class);
+
+		$this->assertSame(1, $entry->calls);
 	}
 
 	public function testResolveFromWireContainerNoInstance(): void
