@@ -82,7 +82,9 @@ trait ResolvesAbstractFunctions
 				return $param->getDefaultValue();
 			}
 
-			throw new WireException('Parameter not resolvable');
+			throw new WireException(
+				"Unresolvable parameter. Source: \n" . ParameterInfo::info($param),
+			);
 		}
 
 		if ($type) {

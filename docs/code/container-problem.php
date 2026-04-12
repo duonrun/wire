@@ -24,5 +24,5 @@ try {
 } catch (WireException $e) {
 	$message = $e->getMessage();
 } finally {
-	assert(str_contains($message, 'Parameter not resolvable'));
+	assert(str_contains($message, 'Unresolvable parameter'));
 }

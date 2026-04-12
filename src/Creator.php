@@ -31,63 +31,64 @@ class Creator implements CreatorInterface
 		?callable $injectCallback = null,
 		string $constructor = '',
 	): object {
-		try {
-			$createdByWire = true;
+		$createdByWire = true;
 
-			if ($constructor !== '') {
-				// Factory method
+		if ($constructor !== '') {
+			// Factory method: wrap reflection lookup, let invocation bubble
+			try {
 				$rmethod = self::getReflectionClass($class)->getMethod($constructor);
-				$args = $this->resolveArgs(
-					$rmethod,
-					predefinedArgs: $predefinedArgs,
-					predefinedTypes: $predefinedTypes,
-					injectCallback: $injectCallback,
+			} catch (Throwable $e) {
+				throw new WireException(
+					'Unresolvable: ' . $class . '::' . $constructor . ' - ' . $e->getMessage(),
+					previous: $e,
 				);
-				$instance = $rmethod->invoke(null, ...$args);
-			} elseif ($this->container && $this->container->has($class)) {
-				if (is_a($this->container, WireContainer::class)) {
-					/** @psalm-suppress MixedAssignment */
-					$value = $this->container->definition($class);
+			}
 
-					if (is_string($value) && class_exists($value)) {
-						$instance = $this->resolveConstructor(
-							$value,
-							$predefinedArgs,
-							$predefinedTypes,
-							$injectCallback,
-						);
-					} else {
-						$createdByWire = false;
-						/** @psalm-suppress MixedAssignment */
-						$instance = $this->container->get($class);
-					}
+			$args = $this->resolveArgs(
+				$rmethod,
+				predefinedArgs: $predefinedArgs,
+				predefinedTypes: $predefinedTypes,
+				injectCallback: $injectCallback,
+			);
+			$instance = $rmethod->invoke(null, ...$args);
+		} elseif ($this->container && $this->container->has($class)) {
+			if (is_a($this->container, WireContainer::class)) {
+				/** @psalm-suppress MixedAssignment */
+				$value = $this->container->definition($class);
+
+				if (is_string($value) && class_exists($value)) {
+					$instance = $this->resolveConstructor(
+						$value,
+						$predefinedArgs,
+						$predefinedTypes,
+						$injectCallback,
+					);
 				} else {
 					$createdByWire = false;
 					/** @psalm-suppress MixedAssignment */
 					$instance = $this->container->get($class);
 				}
 			} else {
-				$instance = $this->resolveConstructor(
-					$class,
-					$predefinedArgs,
-					$predefinedTypes,
-					$injectCallback,
-				);
+				$createdByWire = false;
+				/** @psalm-suppress MixedAssignment */
+				$instance = $this->container->get($class);
 			}
-
-			assert(is_object($instance), 'Created instance must be an object');
-
-			if (!$createdByWire) {
-				return $instance;
-			}
-
-			return $this->applyCallAttributes($instance, $predefinedTypes, $injectCallback);
-		} catch (Throwable $e) {
-			throw new WireException(
-				'Unresolvable: ' . $class . ' Details: ' . $e::class . ' ' . $e->getMessage(),
-				previous: $e,
+		} else {
+			$instance = $this->resolveConstructor(
+				$class,
+				$predefinedArgs,
+				$predefinedTypes,
+				$injectCallback,
 			);
 		}
+
+		assert(is_object($instance), 'Created instance must be an object');
+
+		if (!$createdByWire) {
+			return $instance;
+		}
+
+		return $this->applyCallAttributes($instance, $predefinedTypes, $injectCallback);
 	}
 
 	/** @psalm-param class-string $class */
@@ -97,9 +98,15 @@ class Creator implements CreatorInterface
 		array $predefinedTypes,
 		?callable $injectCallback,
 	): object {
-		$rcls = self::getReflectionClass($class);
+		try {
+			$rcls = self::getReflectionClass($class);
+		} catch (Throwable $e) {
+			throw new WireException(
+				'Unresolvable: ' . $class . ' - ' . $e->getMessage(),
+				previous: $e,
+			);
+		}
 
-		// Regular constructor
 		$args = new ConstructorResolver($this)->resolve(
 			$rcls,
 			predefinedArgs: $predefinedArgs,
