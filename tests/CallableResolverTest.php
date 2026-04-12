@@ -16,9 +16,9 @@ final class CallableResolverTest extends TestCase
 	public function testGetClosureArgs(): void
 	{
 		$resolver = new CallableResolver($this->creator());
-		$args = $resolver->resolve(function (Testclass $testobj, int $number = 13): string {
-			return $testobj::class . (string) $number;
-		});
+		$args = $resolver->resolve(
+			static fn(Testclass $testobj, int $number = 13): string => $testobj::class . (string) $number,
+		);
 
 		$this->assertInstanceOf(TestClass::class, $args[0]);
 		$this->assertSame(13, $args[1]);
@@ -38,7 +38,7 @@ final class CallableResolverTest extends TestCase
 	{
 		$resolver = new CallableResolver($this->creator());
 		$args = $resolver->resolve(
-			fn(Testclass $testobj, int $number): string => $testobj::class . (string) $number,
+			static fn(Testclass $testobj, int $number): string => $testobj::class . (string) $number,
 			predefinedArgs: ['number' => 17],
 		);
 
@@ -50,7 +50,7 @@ final class CallableResolverTest extends TestCase
 	{
 		$resolver = new CallableResolver($this->creator());
 		$args = $resolver->resolve(
-			fn(Testclass $testobj, int $number): string => $testobj::class . (string) $number,
+			static fn(Testclass $testobj, int $number): string => $testobj::class . (string) $number,
 			predefinedTypes: ['int' => 23],
 		);
 
@@ -63,9 +63,7 @@ final class CallableResolverTest extends TestCase
 		$resolver = new CallableResolver($this->creator());
 		$args = $resolver->resolve(
 			[TestClassUsingNested::class, 'create'],
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => $inject->value . ' ' . $inject->meta['id'],
 			predefinedTypes: ['string' => 'predefined-value'],
 		);
 		$result = TestClassUsingNested::create(...$args);
@@ -81,7 +79,7 @@ final class CallableResolverTest extends TestCase
 		$scope = $root->scope();
 		$scope->add(TestClassApp::class, new TestClassApp('scope'));
 		$resolver = new CallableResolver(new Creator($scope));
-		$args = $resolver->resolve(fn(TestClassApp $app): string => $app->app());
+		$args = $resolver->resolve(static fn(TestClassApp $app): string => $app->app());
 
 		$this->assertSame('scope', $args[0]->app());
 	}

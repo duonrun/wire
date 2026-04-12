@@ -30,7 +30,7 @@ final class ParameterInfoTest extends TestCase
 
 	public function testParameterInfoFunction(): void
 	{
-		$rfun = new ReflectionFunction(function (TestClassApp $app) {
+		$rfun = new ReflectionFunction(static function (TestClassApp $app) {
 			$app->debug();
 		});
 		$param = $rfun->getParameters()[0];

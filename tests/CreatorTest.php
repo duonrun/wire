@@ -62,9 +62,7 @@ final class CreatorTest extends TestCase
 		$creator = new Creator();
 		$testobj = $creator->create(
 			TestClassInjectCallback::class,
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => $inject->value . ' ' . $inject->meta['id'],
 		);
 
 		$this->assertSame('callback injected id', $testobj->callback);
@@ -76,9 +74,7 @@ final class CreatorTest extends TestCase
 		$testobj = $creator->create(
 			TestClassInjectCallback::class,
 			constructor: 'create',
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => $inject->value . ' ' . $inject->meta['id'],
 		);
 
 		$this->assertSame('create callback injected id', $testobj->callback);
@@ -137,9 +133,9 @@ final class CreatorTest extends TestCase
 		$creator = new Creator($this->container());
 		$tcun = $creator->create(
 			TestClassUsingNested::class,
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' construct ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => (
+				$inject->value . ' construct ' . $inject->meta['id']
+			),
 			predefinedTypes: ['string' => 'predefined-value'],
 		);
 
@@ -153,9 +149,9 @@ final class CreatorTest extends TestCase
 		$tcun = $creator->create(
 			TestClassUsingNested::class,
 			constructor: 'create',
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' create ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => (
+				$inject->value . ' create ' . $inject->meta['id']
+			),
 			predefinedTypes: ['string' => 'predefined-value'],
 		);
 
@@ -218,7 +214,7 @@ final class CreatorTest extends TestCase
 	public function testResolveParentOwnedSharedEntryThroughScope(): void
 	{
 		$root = $this->scopedWireContainer();
-		$root->add(TestClass::class, fn() => new TestClass('shared'));
+		$root->add(TestClass::class, static fn() => new TestClass('shared'));
 		$scope1 = $root->scope();
 		$scope2 = $root->scope();
 		$creator1 = new Creator($scope1);
@@ -235,7 +231,7 @@ final class CreatorTest extends TestCase
 	public function testResolveParentOwnedScopedEntryThroughScope(): void
 	{
 		$root = $this->scopedWireContainer();
-		$root->add(TestClass::class, fn() => new TestClass('scoped'), $root::SCOPED);
+		$root->add(TestClass::class, static fn() => new TestClass('scoped'), $root::SCOPED);
 		$scope1 = $root->scope();
 		$scope2 = $root->scope();
 		$creator1 = new Creator($scope1);

@@ -52,9 +52,7 @@ final class ConstructorResolverTest extends TestCase
 		$resolver = new ConstructorResolver($this->creator());
 		$args = $resolver->resolve(
 			TestClassInjectCallback::class,
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => $inject->value . ' ' . $inject->meta['id'],
 		);
 
 		$this->assertSame('callback injected id', $args[0]);
@@ -65,9 +63,7 @@ final class ConstructorResolverTest extends TestCase
 		$resolver = new ConstructorResolver($this->creator());
 		$args = $resolver->resolve(
 			TestClassUsingNested::class,
-			injectCallback: function (Inject $inject): mixed {
-				return $inject->value . ' ' . $inject->meta['id'];
-			},
+			injectCallback: static fn(Inject $inject): mixed => $inject->value . ' ' . $inject->meta['id'],
 			predefinedTypes: ['string' => 'predefined-value'],
 		);
 		$result = new TestClassUsingNested(...$args);

@@ -47,15 +47,13 @@ final class InjectTest extends TestCase
 		$creator = new Creator($container);
 		$resolver = new CallableResolver($creator);
 
-		$func = function (
+		$func = static fn(
 			Container $container,
 			#[Inject('injected')]
 			TestClassApp $app,
 			#[Inject('Chuck', Type::Literal)]
 			string $name,
-		): array {
-			return [$app->app, $name, $container];
-		};
+		): array => [$app->app, $name, $container];
 
 		$result = $func(...$resolver->resolve($func));
 
@@ -162,11 +160,9 @@ final class InjectTest extends TestCase
 		$resolver = new CallableResolver($creator);
 		$args = $resolver->resolve(
 			[TestClassInject::class, 'injectWithCallback'],
-			injectCallback: function (Inject $inject): mixed {
-				return [
-					'test' => ['first' => 'first-val', 'second' => 'second-val'],
-				][$inject->value][$inject->meta['id']];
-			},
+			injectCallback: static fn(Inject $inject): mixed => [
+				'test' => ['first' => 'first-val', 'second' => 'second-val'],
+			][$inject->value][$inject->meta['id']],
 		);
 		$result = TestClassInject::injectWithCallback(...$args);
 

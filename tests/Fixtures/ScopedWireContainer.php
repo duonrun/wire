@@ -11,9 +11,9 @@ use Psr\Container\NotFoundExceptionInterface as NotFoundException;
 
 final class ScopedWireContainer implements WireContainer
 {
-		public const string SHARED = 'shared';
-		public const string SCOPED = 'scoped';
-		public const string TRANSIENT = 'transient';
+	public const string SHARED = 'shared';
+	public const string SCOPED = 'scoped';
+	public const string TRANSIENT = 'transient';
 
 	/**
 	 * @var array<non-empty-string, array{definition: mixed, lifetime: string}>
