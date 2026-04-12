@@ -1,74 +1,46 @@
 # The Inject Attribute
 
-By annotating function or method parameters with an `Inject` attribute, you can
-tell the resolvers and, consequently, the creator how to obtain arguments that
-cannot be resolved otherwise or to apply arguments that would not be used by
-default. This means that you can use it to override **_Wire_**'s default
-behavior, for example when you want to choose one of several alternatives or
-when there are literal arguments such as strings, numbers or arrays expected.
+By annotating function or method parameters with an `Inject` attribute, you can tell the resolvers and, consequently, the creator how to obtain arguments that cannot be resolved otherwise or to apply arguments that would not be used by default. This means that you can use it to override **_Wire_**'s default behavior, for example when you want to choose one of several alternatives or when there are literal arguments such as strings, numbers or arrays expected.
 
 ## Example
 
-Let's assume you have two different functions, each of which requires a `Model`
-object as input. But you want to ensure that one of the functions always
-receives a `SubModel` instance, which is a subclass of `Model`. The following
-example shows how to accomplish that:
+Let's assume you have two different functions, each of which requires a `Model` object as input. But you want to ensure that one of the functions always receives a `SubModel` instance, which is a subclass of `Model`. The following example shows how to accomplish that:
 
 ```php
 --8<-- "inject-example.php:7"
 ```
 
-You can control the behavior of the function (in this case, `alsoExpectsModel`)
-by annotating the parameter it with an `Inject` attribute. If the parameter is
-not annotated, the resolver would create an object of the base class `Model`
-because the type of the parameter `$model` is `Model`.
+You can control the behavior of the function (in this case, `alsoExpectsModel`) by annotating the parameter it with an `Inject` attribute. If the parameter is not annotated, the resolver would create an object of the base class `Model` because the type of the parameter `$model` is `Model`.
 
 ## How to use
 
-Simply add the `Inject` attribute to a parameter of a callable or constructor
-that you want to control. You pass a mandatory argument with the value you want
-the callable's argument to have, or, if it's not a literal, with an identifier
-from which the value is derived ([see below for a detailed
-description](#how-injected-argument-values-are-determined)).
+Simply add the `Inject` attribute to a parameter of a callable or constructor that you want to control. You pass a mandatory argument with the value you want the callable's argument to have, or, if it's not a literal, with an identifier from which the value is derived ([see below for a detailed description](#how-injected-argument-values-are-determined)).
 
 The snippet below shows the relevant part of the example above:
 
 <code class="annotated"> <span class="hljs-function"><span
 class="hljs-keyword">function</span> <span
 class="hljs-title">alsoExpectsModel</span>( <br>&nbsp;&nbsp;&nbsp;&nbsp;<span
-class="hljs-meta">#[Inject</span>(<span class="hljs-title
-class_">SubModel</span>::<span class="hljs-variable
-language_">class</span>)<span
-class="hljs-meta">]</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span
+class="hljs-meta">#[Inject</span>(<span class="hljs-title class_">SubModel</span>::<span class="hljs-variable language_">class</span>)<span class="hljs-meta">]</span><br>&nbsp;&nbsp;&nbsp;&nbsp;<span
 class="hljs-params">Model <span
 class="hljs-variable">$model</span></span><br>): <span
 class="hljs-title">Model</span> </span>{ <span class="dots">...</span> </code>
 
 ## The `Inject` instance
 
-The first parameter `$value` of the `Inject` constructor is required and of
-type mixed. The second parameter `$type` is optional and of type
-`Duon\Wire\Type` which is a enum. Both are availabe as public instance
-properties. Every additional argument is avalable via the
-`meta` property.
+The first parameter `$value` of the `Inject` constructor is required and of type mixed. The second parameter `$type` is optional and of type `Duon\Wire\Type` which is a enum. Both are availabe as public instance properties. Every additional argument is avalable via the `meta` property.
 
 ```php
 --8<-- "inject-instance.php:7"
 ```
 
-!!! info "Note"
-    In most cases, you will only work directly with an `Inject` instance if you
-    use the Inject type `Type::Callback`. See [below](#duonwiretypecallback).
+!!! info "Note" In most cases, you will only work directly with an `Inject` instance if you use the Inject type `Type::Callback`. See [below](#duonwiretypecallback).
 
 ## How injected argument values are determined
 
-The resolvers behave differently depending on the type of value that you want
-to be injected.
+The resolvers behave differently depending on the type of value that you want to be injected.
 
-!!! warn "Warning"
-    The resolver does not check if a value which was obtained with the help of
-    an `Inject` attribute matches the parameters type of the callable it
-    should be applied to, so handle with care.
+!!! warn "Warning" The resolver does not check if a value which was obtained with the help of an `Inject` attribute matches the parameters type of the callable it should be applied to, so handle with care.
 
 ### Strings
 
@@ -82,17 +54,13 @@ If the value is a string, like in the following example:
 
 the resolver uses the following rules.
 
-1. If a container is available, see if it has an entry with and id matching the
-   value of the string. If so, return it, if not continue with step 2.
-2. If the string is the full qualified name of an existing class, try to create
-   it using the creator and return it. If not, continue with step 3.
+1. If a container is available, see if it has an entry with and id matching the value of the string. If so, return it, if not continue with step 2.
+2. If the string is the full qualified name of an existing class, try to create it using the creator and return it. If not, continue with step 3.
 3. Return the string as-is.
 
 ### The literal rest
 
-All other types, like arrays, numbers, booleans or null values are passed to
-the callable or are returned by the resolver as they are, i. e. as unchanged
-literals.
+All other types, like arrays, numbers, booleans or null values are passed to the callable or are returned by the resolver as they are, i. e. as unchanged literals.
 
 ```php
 function withLiteralParams(
@@ -101,7 +69,7 @@ function withLiteralParams(
 
      #[Inject(73)]
      int $integerParam,
-     
+
      #[Inject(13.37)]
      float $floatParam,
 
@@ -115,13 +83,9 @@ function withLiteralParams(
 
 ## Don't follow the rules
 
-If you want to bypass the string rules or be explicit about the values you
-inject, you can specifiy the type of the injected value.
-Additionally, with that feature, you can have control over how a value is
-generated.
+If you want to bypass the string rules or be explicit about the values you inject, you can specifiy the type of the injected value. Additionally, with that feature, you can have control over how a value is generated.
 
-The inject type is passed as second argument to the `Inject` attribute und must
-be of the data type `Duon\Wire\Type`:
+The inject type is passed as second argument to the `Inject` attribute und must be of the data type `Duon\Wire\Type`:
 
 ```php
 // a valid array
@@ -130,55 +94,53 @@ be of the data type `Duon\Wire\Type`:
 
 The available types are:
 
-### `Duon\Wire\Type::Literal`  
+### `Duon\Wire\Type::Literal`
 
 Returns the value as is.
 
-``` php
+```php
 #[Inject('a string value', Type::Literal)]
-public function myCallable(string $value): void 
+public function myCallable(string $value): void
 ```
 
-### `Duon\Wire\Type::Entry`  
+### `Duon\Wire\Type::Entry`
 
 Uses the value as id to fetch a value from the [container](container.md).
 
-``` php
+```php
 $container->add('container.entry.id', new Object());
 
 public function myCallable(
     #[Inject('container.entry.id', Type::Entry)]
     Object $value
-): void 
+): void
 ```
 
-``` php
+```php
 $container->add(\Your\Interface::class, new Object());
 
 public function myCallable(
     #[Inject(\Your\Interface::class, Type::Entry)]
     \Your\Interface $value
-): void 
+): void
 ```
 
 ### `Duon\Wire\Type::Create`
 
 Must be a fully qualified class name which the creator attemtps to create.
 
-``` php
+```php
 public function myCallable(
      #[Inject(SubModel::class, Type::Create)]
      Model $value
 ): void
 ```
 
-### `Duon\Wire\Type::Env`  
+### `Duon\Wire\Type::Env`
 
-The value is assumed to be the name an environment variable. It attempts to
-read the environment variable using PHP's internal function `getenv` and then
-returns its value.
+The value is assumed to be the name an environment variable. It attempts to read the environment variable using PHP's internal function `getenv` and then returns its value.
 
-``` php
+```php
 public function myCallable(
     #[Inject('PATH', Type::Env)]
     string|bool $value
@@ -189,10 +151,7 @@ public function myCallable(
 
 ### `Duon\Wire\Type::Callback`
 
-All resolving methods, like `Creator::create` or `CallableResolver::resolve`,
-accept a callback function for the parameter `$injectCallback` that
-will be passed all `Inject` attributes of type `Type::Callback`. The returned value
-of the callback is then used for the annotated parameter.
+All resolving methods, like `Creator::create` or `CallableResolver::resolve`, accept a callback function for the parameter `$injectCallback` that will be passed all `Inject` attributes of type `Type::Callback`. The returned value of the callback is then used for the annotated parameter.
 
 ```php
 --8<-- "inject-callback.php:7"
