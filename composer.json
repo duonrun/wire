@@ -2,7 +2,13 @@
 	"name": "duon/wire",
 	"description": "Autowiring object creator and argument resolver",
 	"type": "library",
-	"keywords": ["duon", "autowire", "autowiring", "factory", "ioc"],
+	"keywords": [
+		"duon",
+		"autowire",
+		"autowiring",
+		"factory",
+		"ioc"
+	],
 	"license": "MIT",
 	"authors": [
 		{
@@ -26,7 +32,7 @@
 		"psr/container": "^2.0"
 	},
 	"require-dev": {
-		"duon/dev": "^2.5"
+		"duon/dev": "^3.0"
 	},
 	"scripts": {
 		"test": "./vendor/bin/phpunit --testdox --no-coverage --colors=always",
