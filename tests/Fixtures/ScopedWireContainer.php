@@ -11,9 +11,9 @@ use Psr\Container\NotFoundExceptionInterface as NotFoundException;
 
 final class ScopedWireContainer implements WireContainer
 {
-	public const string Shared = 'shared';
-	public const string Scoped = 'scoped';
-	public const string Transient = 'transient';
+		public const string SHARED = 'shared';
+		public const string SCOPED = 'scoped';
+		public const string TRANSIENT = 'transient';
 
 	/**
 	 * @var array<non-empty-string, array{definition: mixed, lifetime: string}>
@@ -32,7 +32,7 @@ final class ScopedWireContainer implements WireContainer
 		return new self($this->root());
 	}
 
-	public function add(string $id, mixed $entry = null, string $lifetime = self::Shared): void
+	public function add(string $id, mixed $entry = null, string $lifetime = self::SHARED): void
 	{
 		$this->entries[$id] = [
 			'definition' => $entry ?? $id,
@@ -60,9 +60,9 @@ final class ScopedWireContainer implements WireContainer
 
 		[$entryOwner, $entry] = $resolved;
 		$cacheContainer = match ($entry['lifetime']) {
-			self::Shared => $entryOwner,
-			self::Scoped => $this,
-			self::Transient => null,
+			self::SHARED => $entryOwner,
+			self::SCOPED => $this,
+			self::TRANSIENT => null,
 			default => $entryOwner,
 		};
 

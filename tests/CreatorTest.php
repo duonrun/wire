@@ -235,7 +235,7 @@ final class CreatorTest extends TestCase
 	public function testResolveParentOwnedScopedEntryThroughScope(): void
 	{
 		$root = $this->scopedWireContainer();
-		$root->add(TestClass::class, fn() => new TestClass('scoped'), $root::Scoped);
+		$root->add(TestClass::class, fn() => new TestClass('scoped'), $root::SCOPED);
 		$scope1 = $root->scope();
 		$scope2 = $root->scope();
 		$creator1 = new Creator($scope1);
