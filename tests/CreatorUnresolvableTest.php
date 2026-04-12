@@ -10,6 +10,7 @@ use Duon\Wire\Tests\Fixtures\TestClassDefault;
 use Duon\Wire\Tests\Fixtures\TestClassIntersectionTypeConstructor;
 use Duon\Wire\Tests\Fixtures\TestClassUnionTypeConstructor;
 use Duon\Wire\Tests\Fixtures\TestClassUntypedConstructor;
+use ReflectionException;
 
 final class CreatorUnresolvableTest extends TestCase
 {
@@ -43,5 +44,17 @@ final class CreatorUnresolvableTest extends TestCase
 
 		$creator = new Creator();
 		$creator->create(TestClassIntersectionTypeConstructor::class);
+	}
+
+	public function testKeepsPreviousException(): void
+	{
+		$creator = new Creator();
+
+		try {
+			$creator->create(TestClassDefault::class, constructor: 'missingFactory');
+			$this->fail('Expected WireException to be thrown');
+		} catch (WireException $e) {
+			$this->assertInstanceOf(ReflectionException::class, $e->getPrevious());
+		}
 	}
 }

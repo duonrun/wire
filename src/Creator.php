@@ -85,6 +85,7 @@ class Creator implements CreatorInterface
 		} catch (Throwable $e) {
 			throw new WireException(
 				'Unresolvable: ' . $class . ' Details: ' . $e::class . ' ' . $e->getMessage(),
+				previous: $e,
 			);
 		}
 	}
