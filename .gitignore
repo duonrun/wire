@@ -3,10 +3,8 @@
 .env
 .php*.cache
 .phpactor.json
-/coverage
+/.coverage
 /data
-/site
-/tmp
 /vendor
 /venv
 __pycache__
