@@ -6,7 +6,6 @@ namespace Duon\Wire;
 
 use Duon\Wire\Exception\WireException;
 use ReflectionFunctionAbstract;
-use ReflectionNamedType;
 use ReflectionParameter;
 
 /** @psalm-api */
@@ -61,47 +60,10 @@ trait ResolvesAbstractFunctions
 		array $predefinedTypes,
 		?callable $injectCallback,
 	): mixed {
-		$type = $param->getType();
-
-		if ($type instanceof ReflectionNamedType) {
-			$creator = $this->creator();
-			$container = $creator->container();
-			$typeName = ltrim($type->getName(), '?');
-
-			if (isset($predefinedTypes[$typeName])) {
-				return $predefinedTypes[$typeName];
-			}
-
-			if ($container?->has($typeName)) {
-				return $container->get($typeName);
-			}
-
-			if (class_exists($typeName)) {
-				return $creator->create(
-					$typeName,
-					predefinedTypes: $predefinedTypes,
-					injectCallback: $injectCallback,
-				);
-			}
-
-			if ($param->isDefaultValueAvailable()) {
-				return $param->getDefaultValue();
-			}
-
-			throw new WireException(
-				"Unresolvable parameter. Source: \n" . ParameterInfo::info($param),
-			);
-		}
-
-		if ($type) {
-			throw new WireException(
-				"Cannot resolve union or intersection types. Source: \n" . ParameterInfo::info($param),
-			);
-		}
-
-		throw new WireException(
-			"To be resolvable, classes must have fully typed constructor parameters. Source: \n"
-				. ParameterInfo::info($param),
+		return new ParameterResolver($this->creator())->resolve(
+			$param,
+			$predefinedTypes,
+			$injectCallback,
 		);
 	}
 
