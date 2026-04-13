@@ -30,6 +30,22 @@ final class CreatorUnresolvableTest extends TestCase
 		$creator->create(TestClassUntypedConstructor::class);
 	}
 
+	public function testRejectUnknownClass(): void
+	{
+		$creator = new Creator();
+
+		try {
+			$creator->create('Duon\\Wire\\Tests\\Fixtures\\ClassThatDoesNotExist');
+			$this->fail('Expected WireException to be thrown');
+		} catch (WireException $e) {
+			$this->assertStringContainsString(
+				'Unresolvable: Duon\\Wire\\Tests\\Fixtures\\ClassThatDoesNotExist',
+				$e->getMessage(),
+			);
+			$this->assertInstanceOf(ReflectionException::class, $e->getPrevious());
+		}
+	}
+
 	public function testRejectClassWithUnsupportedConstructorUnionTypes(): void
 	{
 		$this->throws(WireException::class, 'union or intersection');
